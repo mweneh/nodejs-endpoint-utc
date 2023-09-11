@@ -11,8 +11,8 @@ app.get('/endpoint', (req, res) => {
   const currentDay = new Date().toLocaleDateString('en-US', { weekday: 'long' });
   const utcTime = new Date().toISOString();
   const track = req.query.track || 'backend';
-  const githubFileUrl = req.query.github_file_url || '';
-  const githubRepoUrl = req.query.github_repo_url || '';
+  const githubFileUrl = req.query.github_file_url || 'https://github.com/mweneh/nodejs-endpoint-utc/blob/main/index.js';
+  const githubRepoUrl = req.query.github_repo_url || 'https://github.com/mweneh/nodejs-endpoint-utc';
 
   // Calculate UTC offset
   const currentTime = new Date();
