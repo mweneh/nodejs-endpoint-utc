@@ -9,10 +9,17 @@ app.get('/api', (req, res) => {
   // Get query parameters
   const slackName = req.query.slack_name || 'david_ongaro';
   const currentDay = new Date().toLocaleDateString('en-US', { weekday: 'long' });
-  
-  // Format UTC time as "2023-09-11T18:52:42Z"
+
+  // Format UTC time as "2023-09-11T19:01:58Z"
   const currentTime = new Date();
-  const utcTime = currentTime.toISOString();
+  const year = currentTime.getUTCFullYear();
+  const month = String(currentTime.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(currentTime.getUTCDate()).padStart(2, '0');
+  const hours = String(currentTime.getUTCHours()).padStart(2, '0');
+  const minutes = String(currentTime.getUTCMinutes()).padStart(2, '0');
+  const seconds = String(currentTime.getUTCSeconds()).padStart(2, '0');
+
+  const utcTime = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}Z`;
 
   const track = req.query.track || 'backend';
   const githubFileUrl = req.query.github_file_url || 'https://github.com/mweneh/nodejs-endpoint-utc/blob/main/index.js';
@@ -43,4 +50,3 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
