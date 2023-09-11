@@ -9,13 +9,16 @@ app.get('/api', (req, res) => {
   // Get query parameters
   const slackName = req.query.slack_name || 'david_ongaro';
   const currentDay = new Date().toLocaleDateString('en-US', { weekday: 'long' });
-  const utcTime = new Date().toISOString();
+  
+  // Format UTC time as "2023-09-11T18:52:42Z"
+  const currentTime = new Date();
+  const utcTime = currentTime.toISOString();
+
   const track = req.query.track || 'backend';
   const githubFileUrl = req.query.github_file_url || 'https://github.com/mweneh/nodejs-endpoint-utc/blob/main/index.js';
   const githubRepoUrl = req.query.github_repo_url || 'https://github.com/mweneh/nodejs-endpoint-utc';
 
   // Calculate UTC offset
-  const currentTime = new Date();
   const utcOffset = currentTime.getTimezoneOffset() / 60;
 
   // Check if UTC offset is greater than -2 and less than 2
@@ -40,3 +43,4 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
