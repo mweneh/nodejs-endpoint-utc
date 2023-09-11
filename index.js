@@ -5,7 +5,7 @@ const app = express();
 process.env.TZ = 'UTC';
 
 // Define a route to handle GET requests
-app.get('/endpoint', (req, res) => {
+app.get('/api', (req, res) => {
   // Get query parameters
   const slackName = req.query.slack_name || 'david_ongaro';
   const currentDay = new Date().toLocaleDateString('en-US', { weekday: 'long' });
